@@ -7,7 +7,7 @@
 
 # Site settings
 title: CgPanda.com
-email: your-email@domain.com
+email: do_not_tell_you@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   I am an experienced Game Developer, but a newbie Web Developer.
 baseurl: "" # the subpath of your site, e.g. /blog
