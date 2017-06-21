@@ -1,55 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+---
+layout: default
+---
 
-    <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
-</head>
-<body>
-    <form id="login-form">
-        <label>Username :</label>
-        <input id="username" />
-        <br />
-        <label>Password :</label>
-        <input type="password" id="password" />
-        <br />
+<div class="home">
 
-        <button type="submit"> SUBMIT </button>
-    </form>
+  <h1 class="page-heading">Posts</h1>
 
-    <script>
-        $(document).ready(function(){
-            var loginForm = $("#login-form"),
-                usernameElem = $("#username"),
-                passwordElem = $("#password");
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-            loginForm.submit(function(e){
-                e.preventDefault();
-                var username = usernameElem.val(),
-                    password = passwordElem.val();
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
 
-                $.ajax({
-                    method:'POST',
-                    dataType : 'json',
-                    url : 'http://qa-12betv2.mundenghjy.info/api/en-gb/login3rdparty',
-                    data: {
-                        username : username,
-                        password : password
-                    }
-                }).done(function( data ) {
-                    if (data.code){
-                        if (data.code && data.code === "Success"){
-                            window.location.replace(data.redirectUrl);
-                            
-                        }
-                        else{
-                            alert(data.errorMessage);
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
